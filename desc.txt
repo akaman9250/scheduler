@@ -1,0 +1,127 @@
+Schedler for CGL CRM, TSK
+
+This will be used for managing the shift schedule for employees. There are three sections CGL-1 Entry, CGL-1 Process and CGL-1 Exit.
+this web app will be used by all emloyee to see their schedule while 1 person will be managing the shift schedule with admin role.
+
+Roles:
+Admin- All access
+Shift Manager for each section(CGL-1 Entry, CGL-1 Process, CGL-1 Exit)-Can manage shift schedule only for his section, view all employees schedule, Manage Employees only for his section (he can only add/remove employees from his section)
+Employee- Can view their own schedule, Can view their own leave dates, can view other section's schedule and employee's schedule, Can mention their leave dates.
+Guest with a guest id: can view schedule of all the emloyees section wise and overall.
+
+Tech Stack:
+- React
+- Tailwind CSS
+- Node.js
+- Express.js
+- MongoDB
+
+Database Schema:
+- Users 
+- Schedule
+
+Process Flow:
+A user will login if he don't have an account then he can create new account with his personal number and password. Password can only be reset by admin without current password. However password can be changed by the user himself if he knows the current password and logged in from his profile section
+
+
+After login as per the role:
+- Admin and shift manager will see their dashboard with all the employees and their schedules. where they will get the option to manage employee's detail, shift schedule, leave etc.
+- Employee will see their dashboard with their schedules. where they can only view and mention their leave dates
+
+Also there will be a search bar available at top for all the users to see a users profile as he type the name or employee id in search bar the user profile will appear and if the user is admin or shift manager then the user will see the option to manage employee's detail, shift schedule, leave etc.
+
+
+Profile data:
+
+Name, Personal Number, Email, Phone, Section, Department, OFF Day (Common)
+Password (can only reset by admin or self if logged in)
+
+
+Shift Data:
+There will be four shift:
+A- 6AM - 2 PM
+B- 2PM - 10 PM
+C- 10 PM - 6 AM
+G- 8:30AM - 5:30 PM
+Apart from this:
+L- for leave
+OFF - for off
+CO- Compensatory off
+
+
+Shift Manager for CGL-1 Entry:
+
+Should be able to see CGL-1 Entry employees and their schedules.
+Should be able to add/remove employees from CGL-1 Entry section.
+Should be able to set shift schedule for CGL-1 Entry employees.
+
+Shift Manager for CGL-1 Process:
+
+Should be able to see CGL-1 Process employees and their schedules.
+Should be able to add/remove employees from CGL-1 Process section.
+Should be able to set shift schedule for CGL-1 Process employees.
+
+Shift Manager for CGL-1 Exit:
+
+Should be able to see CGL-1 Exit employees and their schedules.
+Should be able to add/remove employees from CGL-1 Exit section.
+Should be able to set shift schedule for CGL-1 Exit employees.
+
+
+In group shift schedule:
+
+Name and Personal Number of the employee should be visible along with their shift schedule (option to change the view daily/weekly/monthly/custom no of days).
+
+
+In individual shift schedule:
+
+By default it should show the current date's shift schedule. (option to change the view daily/weekly/monthly/custom no of days).
+
+All the shift schedule viewer will the option to choose time frame and section name.
+
+
+Rule:
+
+By default in a section minimum 2 employee will be present in each shift. (A/B/C)
+If by any chance the number of employee in a section is less than 2 then the shift manager should get an alert to fill the gap.
+No person will will do two consecutive shift i.e A person can do A shift and B shift on same day.
+By default shift will be contionus for a week, meaning if an employee is assigned A shift on Monday then the employee will have A shift till off day
+
+By dafault shift changeover will be A > B > C ( i.e if a person is doing A shift this week after off day employee will be doing B shift, after B shift C shift and after C shift A shift)
+
+If a person is taking leave then the employee will have L on that day and on the next day the employee will have the same shift as the previous day. or as per shift changeover policy.
+
+Leave will be informed by the employee himself and the shift manager will get a notification. The employee will have L on that day and on the next day the employee will have the same shift as the previous day. or as per shift changeover policy.
+OFF days will be set while creating profile and can be changed only by admin.
+
+A person will have default shift flow but can be changed to manage shift as per section. for ex. if A employee is doing A shift he might be assigned to B/C shift for next day as per requirements. after that day it is preferred if employee can continue same shift till off day. The goal is to minimise intermediate shift changeover.
+
+A person do only one shift per day. 
+
+In shift viewer Total Number of employees with L and OFF on that should be visible and should be clickable. If anyone click on that it should show the list of employees with L and OFF on that day. Also A/B/C shift employee count should be visible and clickable. If anyone click on that it should show the list of employees with A/B/C shift on that day.
+
+If someday there is only 1 employee in a shift and the employee is on leave then the shift manager should get an alert to fill the gap. and count number and shift name should be highlighted with red color.
+
+It is ok if there are no person in G shift.
+G shift can be assigned to any employee except employee who is on leave. (goal of G shift will be used to manage A and B shift pertially in case A and B shift has only 1 manpower).
+There should be minimum use of G shift
+
+A employee can do max 10 days of continuos duty.
+
+Addition Requirement:
+
+There will be a shift viewer tool and Shift generator tool. 
+Shift viewer tool will be used to view the shift schedule of all the employees in a section or overall.
+Shift generator tool will be used to generate the shift schedule for all the employees in a section or overall. This tool will use algorithm to generate the shift schedule for all the employees in a section or overall as per request of Shift manager or admin.
+
+Rules for Shift generator tool:
+1. It should follow the rules mentioned above
+2. It should generate the shift schedule in such a way that there is minimum use of G shift
+3. It should generate the shift schedule in such a way that there is minimum intermediate shift changeover
+4. It should generate the shift schedule in such a way that there is minimum consecutive shift changeover
+5. There will be max (no of employee in section - 6) person on leave/off on any given day. If that exceed then shift manager will get alert and he can mention who will be on leave.
+6. If max person on leave then off day of employee should be changed to avoid shortage of manpower and comp off will be given in +/- 3 days.
+
+7. Shift manager can override rules 
+8. After shift generation user that will be confirmed by admin or shift manager and then it will be displayed to all the employees.
+9. Section of manpower can't be changed/moved/mixed while making schedule, unless and untill explicitly done by admin

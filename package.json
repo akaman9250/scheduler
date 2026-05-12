@@ -1,0 +1,36 @@
+{
+  "name": "cgl-scheduler",
+  "version": "1.0.0",
+  "description": "CGL Shift Scheduler for managing employee shifts",
+  "main": "server/server.js",
+  "scripts": {
+    "server": "node server/server.js",
+    "server:dev": "npx nodemon server/server.js",
+    "seed": "node server/seed/seedData.js",
+    "client": "npm run dev --prefix client",
+    "client:build": "npm run build --prefix client",
+    "build": "npm run client:build",
+    "start": "NODE_ENV=production node server/server.js",
+    "dev": "concurrently \"npm run server:dev\" \"npm run client\"",
+    "test": "cross-env NODE_ENV=test jest server/tests --detectOpenHandles"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "express-validator": "^7.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.7.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
+    "jest": "^30.4.2",
+    "nodemon": "^3.1.14",
+    "supertest": "^7.2.2"
+  }
+}
