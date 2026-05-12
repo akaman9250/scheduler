@@ -132,5 +132,11 @@ if (process.env.NODE_ENV !== 'test') {
     console.log(`🚀 Server running on port ${PORT}`);
   });
 }
+process.on('uncaughtException', (err) => {
+  console.error('UNCAUGHT EXCEPTION:', err);
+});
 
+process.on('unhandledRejection', (err) => {
+  console.error('UNHANDLED REJECTION:', err);
+});
 module.exports = app;
