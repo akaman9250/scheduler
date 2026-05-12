@@ -18,8 +18,8 @@ const app = express();
 const corsOptions = {
   origin: function (origin, callback) {
     const allowedOrigins = [
-      'https://scheduler.kiu3.onrender.com',
-      'https://cgl-scheduler.onrender.com',
+      'https://scheduler-1-d14j.onrender.com',
+      'https://scheduler-6exa.onrender.com',
       'http://localhost:5173',
       'http://localhost:5001',
     ];
