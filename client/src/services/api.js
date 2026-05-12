@@ -1,8 +1,14 @@
 import axios from 'axios';
 
+<<<<<<< HEAD
 const API_URL =
   import.meta.env.VITE_API_URL ||
   'https://scheduler-6exa.onrender.com/api';
+=======
+const API_URL = import.meta.env.MODE === 'production' 
+  ? '/api' 
+  : (import.meta.env.VITE_API_URL || 'https://scheduler-6exa.onrender.com/api');
+>>>>>>> 5ee835a454c52e8914f24b9a60dfe80667714d4e
 
 const api = axios.create({
   baseURL: API_URL,
