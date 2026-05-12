@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const API_URL = import.meta.env.MODE === 'production' 
   ? '/api' 
-  : (import.meta.env.VITE_API_URL || 'http://localhost:5001/api');
+  : (import.meta.env.VITE_API_URL || 'https://scheduler-6exa.onrender.com/api');
 
 const api = axios.create({
   baseURL: API_URL,
