@@ -9,7 +9,7 @@
     "seed": "node server/seed/seedData.js",
     "client": "npm run dev --prefix client",
     "client:build": "npm run build --prefix client",
-    "build": "npm run client:build",
+    "build": "npm install --prefix client && npm run client:build",
     "start": "NODE_ENV=production node server/server.js",
     "dev": "concurrently \"npm run server:dev\" \"npm run client\"",
     "test": "cross-env NODE_ENV=test jest server/tests --detectOpenHandles"

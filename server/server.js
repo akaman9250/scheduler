@@ -48,11 +48,18 @@ app.use('/api/notifications', require('./routes/notifications'));
 // Serve frontend in production
 if (process.env.NODE_ENV === 'production') {
   const clientBuildPath = path.join(__dirname, '../client/dist');
-  app.use(express.static(clientBuildPath));
+  if (require('fs').existsSync(clientBuildPath)) {
+    app.use(express.static(clientBuildPath));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(clientBuildPath, 'index.html'));
-  });
+    app.get('*', (req, res) => {
+      res.sendFile(path.resolve(clientBuildPath, 'index.html'));
+    });
+  } else {
+    console.warn('WARNING: client/dist not found. Serve the built frontend separately or run: npm run build');
+    app.get('*', (req, res) => {
+      res.status(404).json({ message: 'Frontend not built. Run: npm run build' });
+    });
+  }
 } else {
   // Health check for dev
   app.get('/api/health', (req, res) => {
