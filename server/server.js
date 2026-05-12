@@ -44,6 +44,7 @@ app.use('/api/schedules', require('./routes/schedules'));
 app.use('/api/leaves', require('./routes/leaves'));
 app.use('/api/stats', require('./routes/stats'));
 app.use('/api/notifications', require('./routes/notifications'));
+app.use('/api/seed', require('./routes/seed'));
 
 // Serve frontend in production
 if (process.env.NODE_ENV === 'production') {
