@@ -7,7 +7,7 @@ const fs = require('fs');
 const connectDB = require('./config/db');
 
 // Load environment variables
-dotenv.config({ path: path.resolve(__dirname, '../.env') });
+dotenv.config();
 
 // Connect database
 if (process.env.NODE_ENV !== 'test') {
@@ -37,7 +37,7 @@ const corsOptions = {
     if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      callback(null,false);
     }
   },
 
@@ -55,7 +55,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Handle preflight requests
-app.options('*', cors(corsOptions));
+app.options(/.*/, cors(corsOptions));
 
 /* =========================
    MIDDLEWARE
